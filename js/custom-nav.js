@@ -15,23 +15,8 @@ $(window).on('scroll', function(event) {
 /*======== Doucument Ready Function =========*/
 jQuery(document).ready(function () {
 
-      // slicknav
-    /**
-     * Slicknav - a Mobile Menu
-     */
-    var $slicknav_label;
-    $('#responsive-menu').slicknav({
-      duration: 500,
-      easingOpen: 'easeInExpo',
-      easingClose: 'easeOutExpo',
-      closedSymbol: '<i class="fa fa-plus"></i>',
-      openedSymbol: '<i class="fa fa-minus"></i>',
-      prependTo: '#slicknav-mobile',
-      allowParentLinks: true,
-      label:"" 
-    });
+    /* SlickNav disabled: slide-in mobile nav (mobile-nav.js + mobile-nav.css) */
 
-    
     /**
      * Sticky Header
      */

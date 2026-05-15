@@ -1,25 +1,75 @@
 /**
  * Mobile slide-in navigation
- * Active on viewports ≤991px. Desktop header/nav unchanged.
+ * Active on viewports ≤1099px (matches plugin.css). Desktop header/nav at ≥1100px.
  * Transition: 300ms ease-in-out, slide from left.
+ * Loads last in <head> — overrides legacy SlickNav rules in plugin.css / style.css.
  */
+
+/* Legacy SlickNav (replaced by slide-in drawer) */
+#slicknav-mobile,
+.slicknav_menu {
+  display: none !important;
+}
+
+/* Desktop (≥1100px): show horizontal header nav, hide slide-in UI */
+@media (min-width: 1100px) {
+  #responsive-menu,
+  .header_menu .navbar.navbar-default .nav.navbar-nav#responsive-menu {
+    display: inline-block !important;
+  }
+
+  .navbar-collapse1 {
+    display: flex !important;
+  }
+}
+
+/* Mobile/tablet (≤1099px): hide wrapped inline nav; use slide-in drawer only */
+@media (max-width: 1099px) {
+  #responsive-menu,
+  .header_menu .navbar.navbar-default .nav.navbar-nav#responsive-menu {
+    display: none !important;
+  }
+
+  .navbar-collapse1 {
+    display: none !important;
+  }
+
+  .header_menu .navbar.navbar-default .register-login {
+    display: flex !important;
+  }
+
+  /* Make booking button compact to fit in mobile header */
+  .register-login .nir-btn {
+    font-size: 10px !important;
+    padding: 6px 8px !important;
+    border-radius: 5px !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+  }
+
+  /* Uncomment below if you want to hide the booking button entirely on mobile:
+  .register-login {
+    display: none !important;
+  }
+  */
+}
 
 /* Shared translucent panel style (overlay + drawer) */
 .mobile-nav-overlay,
 .mobile-nav-drawer {
-  --mobile-nav-glass: rgba(255, 255, 255, 0.08);
-  --mobile-nav-glass-border: rgba(255, 255, 255, 0.12);
-  --mobile-nav-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --mobile-nav-glass: rgba(15, 15, 15, 0.95);
+  --mobile-nav-glass-border: rgba(50, 50, 50, 0.5);
+  --mobile-nav-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 /* Trigger: visible only on mobile/tablet; hide default Slicknav on same breakpoint */
-@media (min-width: 992px) {
+@media (min-width: 1100px) {
   .mobile-nav-trigger {
     display: none !important;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1099px) {
   #slicknav-mobile .slicknav_btn,
   #slicknav-mobile .slicknav_nav {
     display: none !important;
@@ -43,7 +93,7 @@
   .mobile-nav-trigger:hover,
   .mobile-nav-trigger:focus {
     background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: #444141;
     outline: none;
   }
 
@@ -140,50 +190,116 @@ body.mobile-nav-open .mobile-nav-drawer {
   -webkit-overflow-scrolling: touch;
 }
 
-.mobile-nav-list {
+/* Single vertical column (flex, not CSS columns — avoids multi-column split) */
+#mobile-nav-drawer .mobile-nav-list,
+#mobile-nav-drawer .mobile-nav-list ul.dropdown-menu {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  float: none !important;
+  columns: unset !important;
+  column-count: unset !important;
 }
 
-.mobile-nav-list > li {
+#mobile-nav-drawer .mobile-nav-list li {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  position: relative !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+#mobile-nav-drawer .mobile-nav-list > li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.mobile-nav-list > li:last-child {
+#mobile-nav-drawer .mobile-nav-list > li:last-child {
   border-bottom: none;
 }
 
-.mobile-nav-list a {
-  display: block;
+.mobile-nav-drawer .mobile-nav-list a {
+  display: block !important;
+  width: 100%;
   padding: 14px 12px;
-  color: #fff;
+  color: #fff !important;
   text-decoration: none;
   font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  background: transparent;
   transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: normal;
+  justify-content: flex-start !important;
 }
 
-.mobile-nav-list a:hover {
+.mobile-nav-drawer .mobile-nav-list a i.fa-angle-right {
+  position: static !important;
+  float: right;
+  margin-top: 4px;
+}
+
+.mobile-nav-drawer .mobile-nav-list a:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  color: #fff !important;
 }
 
-/* Submenus in drawer */
-.mobile-nav-list .dropdown-menu {
+/* Submenus in drawer — stacked below parent, not side-by-side flyouts */
+.mobile-nav-drawer .mobile-nav-list .dropdown-menu {
   list-style: none;
   margin: 0;
   padding: 0 0 0 1rem;
   border: none;
   background: transparent;
   box-shadow: none;
-  display: none;
+  display: none !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  float: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.mobile-nav-list li.submenu.open > .dropdown-menu {
-  display: block;
+#mobile-nav-drawer .mobile-nav-list li.submenu.open > .dropdown-menu {
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-.mobile-nav-list .dropdown-menu li a {
+/* Nested menus stay hidden until their parent row is opened */
+#mobile-nav-drawer .mobile-nav-list .dropdown-menu .dropdown-menu {
+  display: none !important;
+}
+
+#mobile-nav-drawer .mobile-nav-list li.submenu.open > .dropdown-menu .dropdown-menu {
+  display: none !important;
+}
+
+#mobile-nav-drawer .mobile-nav-list li.submenu.open li.submenu.open > .dropdown-menu {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.mobile-nav-drawer .mobile-nav-list li.submenu .dropdown-menu li.submenu .dropdown-menu {
+  position: static !important;
+  left: auto !important;
+  width: 100% !important;
+  transform: none !important;
+  padding-left: 1rem;
+}
+
+.mobile-nav-drawer .mobile-nav-list .dropdown-menu li a {
   padding: 10px 12px;
   font-size: 0.95em;
   font-weight: 400;
@@ -204,7 +320,7 @@ body.mobile-nav-open {
 }
 
 /* Desktop: hide overlay and drawer from layout/visibility */
-@media (min-width: 992px) {
+@media (min-width: 1100px) {
   .mobile-nav-overlay,
   .mobile-nav-drawer {
     display: none !important;
