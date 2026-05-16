@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 section#section-1 {
   margin-top: 0;
@@ -213,28 +213,28 @@ section#section-1 {
 #section-1 .content-slider .slider #top-banner-1 {
   background:
     linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination1.jpg') center center no-repeat;
+    url('../images/destination/destination1.webp') center center no-repeat;
   background-size: cover;
 }
 
 #section-1 .content-slider .slider #top-banner-2 {
   background:
     linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination10.jpg') center center no-repeat;
+    url('../images/destination/destination10.webp') center center no-repeat;
   background-size: cover;
 }
 
 #section-1 .content-slider .slider #top-banner-3 {
   background:
     linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination16.jpg') center center no-repeat;
+    url('../images/destination/destination16.webp') center center no-repeat;
   background-size: cover;
 }
 
 #section-1 .content-slider .slider #top-banner-4 {
   background:
     linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination11.jpg') center center no-repeat;
+    url('../images/destination/destination11.webp') center center no-repeat;
   background-size: cover;
 }
 

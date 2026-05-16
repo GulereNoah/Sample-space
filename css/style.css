@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap");
 /*------------------------------------------------------------------
 * Project:        Travelin - Travel Tour Booking HTML Templates
@@ -5615,7 +5615,7 @@ section.comingsoon::before {
   top: 0;
   bottom: 0;
   width: 100%;
-  background: url(../images/bg/bg6.jpg);
+  background: url(../images/bg/bg6.webp);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -7769,10 +7769,10 @@ ul.sidebar-tags li a:hover {
 /*          Services Detail Page                     */
 /* ================================================= */
 
-/* ── Global ────────────────────────────────────── */
+/* â”€â”€ Global â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-/* ── Hero / Breadcrumb ──────────────────────────── */
+/* â”€â”€ Hero / Breadcrumb â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .breadcrumb-main {
     min-height: 300px;
     display: flex;
@@ -7810,7 +7810,7 @@ ul.sidebar-tags li a:hover {
     margin: 12px auto 0;
 }
 
-/* ── Services Section ───────────────────────────── */
+/* â”€â”€ Services Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .about-us {
     background: #f9f7f4;
 }
@@ -7862,7 +7862,7 @@ ul.sidebar-tags li a:hover {
     line-height: 1.75;
 }
 
-/* Feature list items — pill badges */
+/* Feature list items â€” pill badges */
 .tab-content .service-item ul {
     display: flex;
     flex-wrap: wrap;
@@ -7908,7 +7908,7 @@ ul.sidebar-tags li a:hover {
     font-size: 0.95rem;
 }
 
-/* ── Sidebar ────────────────────────────────────── */
+/* â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sidebar-sticky {
     position: sticky;
     top: 100px;
@@ -8016,7 +8016,7 @@ ul.sidebar-tags li a:hover {
     font-size: 1rem;
 }
 
-/* ── CTA / Discount Section ─────────────────────── */
+/* â”€â”€ CTA / Discount Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .discount-action {
     background: #f0ede7 !important;
 }
@@ -8071,7 +8071,7 @@ ul.sidebar-tags li a:hover {
     box-shadow: 0 8px 28px rgba(232, 131, 42, 0.5);
 }
 
-/* ── Partners Section ───────────────────────────── */
+/* â”€â”€ Partners Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .our-partner {
     background: #f5f5f0;
 }
