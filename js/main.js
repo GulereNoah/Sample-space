@@ -618,7 +618,6 @@
 
      // Function to validate dates in real-time
      function validateBookingDates() {
-         var serviceType = $('#service-type').val();
          var startDateVal = $('input[name="travel_date_start"]').val();
          var endDateVal = $('input[name="travel_date_end"]').val();
          var today = new Date();
@@ -640,45 +639,13 @@
              isValid = false;
          }
 
-         // 2. Lead time validation
-         if (serviceType === 'luxury_safari') {
-             var minLeadSafari = new Date(today);
-             minLeadSafari.setDate(today.getDate() + 3);
-             if (startDate < minLeadSafari) {
-                 $('#start-date-error').text("Wild Safari must be booked at least 3 days in advance.");
-                 $('input[name="travel_date_start"]').addClass('is-invalid');
-                 isValid = false;
-             }
-         }
-
-         if (serviceType === 'gorilla_trekking') {
-             var minLeadGorilla = new Date(today);
-             minLeadGorilla.setMonth(today.getMonth() + 2);
-             if (startDate < minLeadGorilla) {
-                 $('#start-date-error').text("Gorilla Trekking must be booked at least 2 months in advance.");
-                 $('input[name="travel_date_start"]').addClass('is-invalid');
-                 isValid = false;
-             }
-         }
-
          if (endDateVal) {
              var endDate = new Date(endDateVal);
-             // 3. End date after start date
+             // 2. End date after start date
              if (endDate < startDate) {
                  $('#end-date-error').text("End date cannot be earlier than start date.");
                  $('input[name="travel_date_end"]').addClass('is-invalid');
                  isValid = false;
-             }
-
-             // 4. Safari duration check
-             if (serviceType === 'luxury_safari' && isValid) {
-                 var diffTime = Math.abs(endDate - startDate);
-                 var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                 if (diffDays < 5) {
-                     $('#end-date-error').text("Wild Safari requires a minimum duration of 5 days.");
-                     $('input[name="travel_date_end"]').addClass('is-invalid');
-                     isValid = false;
-                 }
              }
          }
 
@@ -693,26 +660,23 @@
          if (['luxury_safari', 'gorilla_trekking', 'custom_itinerary'].includes(selectedValue)) {
              $('#section-leisure').show();
              
-             // Dynamically adjust date picker min dates and hints
+             // Set minimum date to today only
              var today = new Date();
              today.setHours(0, 0, 0, 0);
              var startInput = $('input[name="travel_date_start"]');
              var endInput = $('input[name="travel_date_end"]');
              
+             // Always set min date to today
+             startInput.attr('min', today.toISOString().split('T')[0]);
+             
+             // Show hints/tips without enforcing rules
              if (selectedValue === 'luxury_safari') {
-                 var minLeadSafari = new Date(today);
-                 minLeadSafari.setDate(today.getDate() + 3);
-                 startInput.attr('min', minLeadSafari.toISOString().split('T')[0]);
-                 $('#start-date-hint').text('Minimum 3 days lead time').addClass('theme');
-                 $('#end-date-hint').text('Minimum 5 days duration').addClass('theme');
+                 $('#start-date-hint').text('Tip: Book at least 3 days in advance for best availability').addClass('theme');
+                 $('#end-date-hint').text('');
              } else if (selectedValue === 'gorilla_trekking') {
-                 var minLeadGorilla = new Date(today);
-                 minLeadGorilla.setMonth(today.getMonth() + 2);
-                 startInput.attr('min', minLeadGorilla.toISOString().split('T')[0]);
-                 $('#start-date-hint').text('Minimum 2 months lead time for permits').addClass('theme');
+                 $('#start-date-hint').text('Tip: Book at least 2 months in advance for permit availability').addClass('theme');
                  $('#end-date-hint').text('');
              } else {
-                 startInput.attr('min', today.toISOString().split('T')[0]);
                  $('#start-date-hint').text('');
                  $('#end-date-hint').text('');
              }
