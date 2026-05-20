@@ -1,15 +1,15 @@
 /**
- * Mobile slide-in navigation
+ * Mobile slide-in navigation with glass-morphism design
  * Clones #responsive-menu into the drawer after DOM + header scripts are ready.
  */
 (function () {
   "use strict";
 
-  var DRAWER_ID = "mobile-nav-drawer";
-  var OVERLAY_ID = "mobile-nav-overlay";
-  var TRIGGER_ID = "mobile-nav-trigger";
-  var CLOSE_ID = "mobile-nav-close";
-  var LIST_ID = "mobile-nav-list";
+  var DRAWER_ID = "mobile-drawer";
+  var OVERLAY_ID = "drawer-overlay";
+  var TRIGGER_ID = "mobile-hamburger";
+  var CLOSE_ID = "drawer-close";
+  var LIST_ID = "drawer-menu";
   var SOURCE_MENU_ID = "responsive-menu";
   var BODY_OPEN_CLASS = "mobile-nav-open";
   var initialized = false;
@@ -23,9 +23,27 @@
     var overlay = byId(OVERLAY_ID);
     var drawer = byId(DRAWER_ID);
     var trigger = byId(TRIGGER_ID);
-    if (overlay) overlay.setAttribute("aria-hidden", "false");
-    if (drawer) drawer.setAttribute("aria-hidden", "false");
-    if (trigger) trigger.setAttribute("aria-expanded", "true");
+    
+    // Close all open submenus first
+    var openMenus = drawer ? drawer.querySelectorAll("li.open") : [];
+    openMenus.forEach(function (li) {
+      li.classList.remove("open");
+      var menu = li.querySelector("ul");
+      if (menu) menu.style.display = "none";
+    });
+    
+    if (overlay) {
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
+    }
+    if (drawer) {
+      drawer.classList.add("active");
+      drawer.setAttribute("aria-hidden", "false");
+    }
+    if (trigger) {
+      trigger.classList.add("active");
+      trigger.setAttribute("aria-expanded", "true");
+    }
   }
 
   function closeMenu() {
@@ -33,13 +51,46 @@
     var overlay = byId(OVERLAY_ID);
     var drawer = byId(DRAWER_ID);
     var trigger = byId(TRIGGER_ID);
-    if (overlay) overlay.setAttribute("aria-hidden", "true");
-    if (drawer) drawer.setAttribute("aria-hidden", "true");
-    if (trigger) trigger.setAttribute("aria-expanded", "false");
+    if (overlay) {
+      overlay.classList.remove("active");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+    if (drawer) {
+      drawer.classList.remove("active");
+      drawer.setAttribute("aria-hidden", "true");
+    }
+    if (trigger) {
+      trigger.classList.remove("active");
+      trigger.setAttribute("aria-expanded", "false");
+    }
+    // Reset scroll indicator
+    var scrollIndicator = document.getElementById("drawer-scroll-indicator");
+    if (scrollIndicator) {
+      scrollIndicator.classList.remove("visible");
+      scrollIndicator.classList.remove("hidden");
+    }
   }
 
   function isOpen() {
-    return document.body.classList.contains(BODY_OPEN_CLASS);
+    var drawer = byId(DRAWER_ID);
+    return drawer ? drawer.classList.contains("active") : false;
+  }
+
+  function hasOpenSubmenus() {
+    return document.querySelectorAll("#mobile-drawer li.open").length > 0;
+  }
+
+  function updateScrollIndicator() {
+    var scrollIndicator = document.getElementById("drawer-scroll-indicator");
+    if (scrollIndicator) {
+      if (hasOpenSubmenus()) {
+        scrollIndicator.classList.add("visible");
+        scrollIndicator.classList.remove("hidden");
+      } else {
+        scrollIndicator.classList.remove("visible");
+        scrollIndicator.classList.add("hidden");
+      }
+    }
   }
 
   function cloneMenuIntoDrawer() {
@@ -53,6 +104,7 @@
 
     drawer.querySelectorAll("li.dropdown").forEach(function (li) {
       li.classList.remove("dropdown");
+      li.classList.add("submenu");
     });
 
     drawer.querySelectorAll(".dropdown-menu").forEach(function (menu) {
@@ -74,6 +126,7 @@
         e.preventDefault();
         e.stopPropagation();
         li.classList.toggle("open");
+        updateScrollIndicator();
       });
     });
   }
@@ -83,6 +136,8 @@
     var closeBtn = byId(CLOSE_ID);
     var overlay = byId(OVERLAY_ID);
     var drawer = byId(DRAWER_ID);
+    var scrollIndicator = document.getElementById("drawer-scroll-indicator");
+    var navContent = drawer ? drawer.querySelector(".drawer-nav-content") : null;
 
     if (trigger && !trigger.dataset.mobileNavBound) {
       trigger.dataset.mobileNavBound = "1";
@@ -110,12 +165,28 @@
       });
     }
 
+    if (navContent && scrollIndicator) {
+      navContent.addEventListener("scroll", function () {
+        if (scrollIndicator.classList.contains("visible")) {
+          if (navContent.scrollTop > 10) {
+            scrollIndicator.classList.add("hidden");
+          } else {
+            scrollIndicator.classList.remove("hidden");
+          }
+        }
+      });
+    }
+
     if (!document.documentElement.dataset.mobileNavEscapeBound) {
       document.documentElement.dataset.mobileNavEscapeBound = "1";
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && isOpen()) closeMenu();
       });
     }
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1099) closeMenu();
+    });
   }
 
   function init() {

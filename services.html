@@ -87,11 +87,8 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="navbar-collapse1 d-flex align-items-center" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="responsive-menu">
-                  <li class="dropdown submenu">
-                    <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-                      >Home
-                      </a>
-                    
+                  <li>
+                    <a href="index.html">Home</a>
                   </li>
 
                   <li><a href="about.html">About Us</a></li>
@@ -159,7 +156,7 @@
                 <a href="booking.html" class="nir-btn white"><span class="book-now-text">Booking Inquiry</span></a>
               </div>
 
-              <button type="button" class="mobile-nav-trigger" id="mobile-nav-trigger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+              <button type="button" class="mobile-nav-trigger" id="mobile-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
                 <span class="mobile-nav-trigger-icon" aria-hidden="true"></span>
               </button>
             </div>
@@ -171,13 +168,38 @@
     </header>
     <!-- header ends -->
 
-    <!-- Mobile slide-in menu (overlay + drawer); desktop nav unchanged -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true"></div>
-    <aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
-      <button type="button" class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">Ã—</button>
-      <nav class="mobile-nav-content">
-        <ul class="mobile-nav-list" id="mobile-nav-list"></ul>
+    <!-- Mobile drawer menu (overlay + drawer); desktop nav unchanged -->
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+      <nav class="drawer-nav-content">
+        <ul class="drawer-menu" id="drawer-menu"></ul>
       </nav>
+      <div class="drawer-scroll-indicator" id="drawer-scroll-indicator">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+      <div class="drawer-footer">
+        <p>Bujagali, Jinja, Uganda</p>
+        <p>+256708959651 / +256780753388</p>
+        <p>Mon-Fri: 08 AM - 06 PM</p>
+        <div class="drawer-socials">
+          <a href="https://wa.me/256708959651?text=Hello%20Simbiya%20Safaris!%20I%20would%20like%20to%20inquire%20about%20your%20tour%20packages." aria-label="WhatsApp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61588058397538" aria-label="Facebook" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://tiktok.com/@simbiyasafaris2" aria-label="TikTok" target="_blank">
+            <img src="images/icons/tiktok.svg" alt="TikTok" width="20" height="20">
+          </a>
+          <a href="https://www.instagram.com/simbiyasafaris?igsh=emFleXNkczZ2ZnM2" aria-label="Instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" aria-label="YouTube" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
     </aside>
 
 <!-- BreadCrumb Starts -->  
@@ -221,7 +243,7 @@
                                         <i class="icon-eye theme"></i>
                                     </div>
                                     <h4><a href="services-detail.html">Wildlife Safaris</a></h4>
-                                    <p class="mb-0">Professionally structured game-viewing experiences across Ugandaâ€™s premier national parks.</p>
+                                    <p class="mb-0">Professionally structured game-viewing experiences across Uganda’s premier national parks.</p>
                                 </div>
                             </div>
                         </div>
@@ -232,7 +254,7 @@
                                         <i class="icon-directions theme"></i>
                                     </div>
                                     <h4><a href="services-detail.html">Gorilla & Chimpanzee Trekking</a></h4>
-                                    <p class="mb-0">Permit-secured primate experiences in Ugandaâ€™s protected forests.</p>
+                                    <p class="mb-0">Permit-secured primate experiences in Uganda’s protected forests.</p>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +327,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="partner-item p-4 py-2 rounded bg-lgrey">
-                        <img src="images/cl-5.png" alt="">
+                        <img src="images/cl-4.png" alt="">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -320,12 +342,12 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="partner-item p-4 py-2 rounded bg-lgrey">
-                        <img src="images/cl-4.png" alt="">
+                        <img src="images/cl-1.png" alt="">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="partner-item p-4 py-2 rounded bg-lgrey">
-                        <img src="images/cl-5.png" alt="">
+                        <img src="images/cl-4.png" alt="">
                     </div>
                 </div>
             </div>

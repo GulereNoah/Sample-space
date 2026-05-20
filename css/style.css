@@ -1945,6 +1945,10 @@ header #navbar {
   box-shadow: 0 0 15px rgba(204, 204, 204, 0.2156862745);
   background: #fff;
 }
+.main_header_area .header_menu.fixed-top .nav.navbar-nav {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
 .main_header_area .header_menu.hide {
   top: -94px;
   animation-name: slideInUp;
@@ -2079,7 +2083,14 @@ header #navbar {
   float: none;
   text-align: right;
   display: inline-block;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  padding: 15px 20px;
+  border-radius: 60px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  border: 0.5px solid #ccc;
 }
 .header_menu .navbar.navbar-default .nav.navbar-nav li {
   float: none;

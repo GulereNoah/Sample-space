@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -87,11 +87,8 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="navbar-collapse1 d-flex align-items-center" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="responsive-menu">
-                  <li class="dropdown submenu">
-                    <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-                      >Home
-                      </a>
-                    
+                  <li>
+                    <a href="index.html">Home</a>
                   </li>
 
                   <li><a href="about.html">About Us</a></li>
@@ -172,7 +169,7 @@
                 <a href="booking.html" class="nir-btn white"><span class="book-now-text">Booking Inquiry</span></a>
               </div>
 
-              <button type="button" class="mobile-nav-trigger" id="mobile-nav-trigger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+              <button type="button" class="mobile-nav-trigger" id="mobile-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
                 <span class="mobile-nav-trigger-icon" aria-hidden="true"></span>
               </button>
             </div>
@@ -184,13 +181,38 @@
     </header>
     <!-- header ends -->
 
-    <!-- Mobile slide-in menu (overlay + drawer); desktop nav unchanged -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true"></div>
-    <aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
-      <button type="button" class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">Ã—</button>
-      <nav class="mobile-nav-content">
-        <ul class="mobile-nav-list" id="mobile-nav-list"></ul>
+    <!-- Mobile drawer menu (overlay + drawer); desktop nav unchanged -->
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+      <nav class="drawer-nav-content">
+        <ul class="drawer-menu" id="drawer-menu"></ul>
       </nav>
+      <div class="drawer-scroll-indicator" id="drawer-scroll-indicator">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+      <div class="drawer-footer">
+        <p>Bujagali, Jinja, Uganda</p>
+        <p>+256708959651 / +256780753388</p>
+        <p>Mon-Fri: 08 AM - 06 PM</p>
+        <div class="drawer-socials">
+          <a href="https://wa.me/256708959651?text=Hello%20Simbiya%20Safaris!%20I%20would%20like%20to%20inquire%20about%20your%20tour%20packages." aria-label="WhatsApp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61588058397538" aria-label="Facebook" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://tiktok.com/@simbiyasafaris2" aria-label="TikTok" target="_blank">
+            <img src="images/icons/tiktok.svg" alt="TikTok" width="20" height="20">
+          </a>
+          <a href="https://www.instagram.com/simbiyasafaris?igsh=emFleXNkczZ2ZnM2" aria-label="Instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" aria-label="YouTube" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
     </aside>
 
 <!-- BreadCrumb Starts -->  
@@ -231,7 +253,7 @@
                                     </div>
                                 </div>
                                 <div class="hero-stat-pill bg-theme p-3 rounded mb-4 text-white d-flex flex-wrap justify-content-between align-items-center">
-                                    <span class="me-3"><i class="fa fa-map-marker-alt me-1"></i> 3,840 kmÂ² Protected Area</span>
+                                    <span class="me-3"><i class="fa fa-map-marker-alt me-1"></i> 3,840 km² Protected Area</span>
                                     <span class="me-3"><i class="fa fa-paw me-1"></i> 76 Mammal Species</span>
                                     <span class="me-3"><i class="fa fa-dove me-1"></i> 450+ Birds</span>
                                     <span><i class="fa fa-tag me-1"></i> From $620</span>
@@ -284,7 +306,7 @@
                                 </div>
                                 <div class="description mb-4">
                                     <h4>Destination Overview</h4>
-                                    <p>Bwindi is not simply a destination  it is a rare ecological sanctuary holding nearly half of the worldâ€™s remaining mountain gorillas. The forest is ancient, biodiverse, and intensely immersive.</p>
+                                    <p>Bwindi is not simply a destination  it is a rare ecological sanctuary holding nearly half of the world’s remaining mountain gorillas. The forest is ancient, biodiverse, and intensely immersive.</p>
                                     <p>Gorilla trekking here is conducted under strict conservation protocols, guided by professional rangers and trackers trained in primate behavior and safety.</p>
                                 </div>
                                 <div class="description mb-4">
@@ -317,7 +339,7 @@
                                     </div>
                                 </div>
                                 <div class="hero-stat-pill bg-theme p-3 rounded mb-4 text-white d-flex flex-wrap justify-content-between align-items-center">
-                                    <span class="me-3"><i class="fa fa-map me-1"></i> 1,978 km² Ecosystem</span>
+                                    <span class="me-3"><i class="fa fa-map me-1"></i> 1,978 km� Ecosystem</span>
                                     <span class="me-3"><i class="fa fa-paw me-1"></i> 95 Mammal Species</span>
                                     <span class="me-3"><i class="fa fa-dove me-1"></i> 600+ Birds</span>
                                     <span><i class="fa fa-tag me-1"></i> From $690</span>
@@ -361,7 +383,7 @@
                                 <div class="hero-stat-pill bg-theme p-3 rounded mb-4 text-white d-flex flex-wrap justify-content-between align-items-center">
                                     <span class="me-3"><i class="fa fa-leaf me-1"></i> 13 Primate Species</span>
                                     <span class="me-3"><i class="fa fa-paw me-1"></i> 1,500+ Chimpanzees</span>
-                                    <span class="me-3"><i class="fa fa-map me-1"></i> 795 kmÂ² Forest</span>
+                                    <span class="me-3"><i class="fa fa-map me-1"></i> 795 km² Forest</span>
                                     <span><i class="fa fa-tag me-1"></i> From $1680 pp </span>
                                 </div>
                                 <div class="description-images mb-4">
@@ -401,7 +423,7 @@
                                     </div>
                                 </div>
                                 <div class="hero-stat-pill bg-theme p-3 rounded mb-4 text-white d-flex flex-wrap justify-content-between align-items-center">
-                                    <span class="me-3"><i class="fa fa-tree me-1"></i> 1,442 km² Wilderness</span>
+                                    <span class="me-3"><i class="fa fa-tree me-1"></i> 1,442 km� Wilderness</span>
                                     <span class="me-3"><i class="fa fa-paw me-1"></i> 77 Mammals</span>
                                     <span class="me-3"><i class="fa fa-dove me-1"></i> 475 Birds</span>
                                     <span><i class="fa fa-tag me-1"></i> From $3,200</span>
@@ -526,7 +548,7 @@
                                     </div>
                                 </div>
                                 <div class="hero-stat-pill bg-theme p-3 rounded mb-4 text-white d-flex flex-wrap justify-content-between align-items-center">
-                                    <span class="me-3"><i class="fa fa-map me-1"></i> 260 km² Savannah</span>
+                                    <span class="me-3"><i class="fa fa-map me-1"></i> 260 km� Savannah</span>
                                     <span class="me-3"><i class="fa fa-dove me-1"></i> 350+ Birds</span>
                                     <span class="me-3"><i class="fa fa-walking me-1"></i> Walking Safaris</span>
                                     <span><i class="fa fa-tag me-1"></i> From $420</span>
@@ -567,7 +589,7 @@
                                     </div>
                                 </div>
                                 <div class="hero-stat-pill bg-theme p-3 rounded mb-4 text-white d-flex flex-wrap justify-content-between align-items-center">
-                                    <span class="me-3"><i class="fa fa-leaf me-1"></i> 220 km² Rainforest</span>
+                                    <span class="me-3"><i class="fa fa-leaf me-1"></i> 220 km� Rainforest</span>
                                     <span class="me-3"><i class="fa fa-dove me-1"></i> 441 Bird Species</span>
                                     <span class="me-3"><i class="fa fa-hot-tub me-1"></i> Sempaya Hot Springs</span>
                                     <span><i class="fa fa-tag me-1"></i> From $520 </span>
