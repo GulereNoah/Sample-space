@@ -63,12 +63,6 @@
       trigger.classList.remove("active");
       trigger.setAttribute("aria-expanded", "false");
     }
-    // Reset scroll indicator
-    var scrollIndicator = document.getElementById("drawer-scroll-indicator");
-    if (scrollIndicator) {
-      scrollIndicator.classList.remove("visible");
-      scrollIndicator.classList.remove("hidden");
-    }
   }
 
   function isOpen() {
@@ -78,19 +72,6 @@
 
   function hasOpenSubmenus() {
     return document.querySelectorAll("#mobile-drawer li.open").length > 0;
-  }
-
-  function updateScrollIndicator() {
-    var scrollIndicator = document.getElementById("drawer-scroll-indicator");
-    if (scrollIndicator) {
-      if (hasOpenSubmenus()) {
-        scrollIndicator.classList.add("visible");
-        scrollIndicator.classList.remove("hidden");
-      } else {
-        scrollIndicator.classList.remove("visible");
-        scrollIndicator.classList.add("hidden");
-      }
-    }
   }
 
   function cloneMenuIntoDrawer() {
@@ -126,7 +107,16 @@
         e.preventDefault();
         e.stopPropagation();
         li.classList.toggle("open");
-        updateScrollIndicator();
+
+        if (li.classList.contains("open")) {
+          setTimeout(function () {
+            li.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "nearest"
+            });
+          }, 100);
+        }
       });
     });
   }
@@ -136,7 +126,6 @@
     var closeBtn = byId(CLOSE_ID);
     var overlay = byId(OVERLAY_ID);
     var drawer = byId(DRAWER_ID);
-    var scrollIndicator = document.getElementById("drawer-scroll-indicator");
     var navContent = drawer ? drawer.querySelector(".drawer-nav-content") : null;
 
     if (trigger && !trigger.dataset.mobileNavBound) {
@@ -162,18 +151,6 @@
       drawer.addEventListener("click", function (e) {
         var link = e.target.closest("a");
         if (link && !link.classList.contains("dropdown-toggle")) closeMenu();
-      });
-    }
-
-    if (navContent && scrollIndicator) {
-      navContent.addEventListener("scroll", function () {
-        if (scrollIndicator.classList.contains("visible")) {
-          if (navContent.scrollTop > 10) {
-            scrollIndicator.classList.add("hidden");
-          } else {
-            scrollIndicator.classList.remove("hidden");
-          }
-        }
       });
     }
 
