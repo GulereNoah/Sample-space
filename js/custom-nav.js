@@ -1,58 +1,64 @@
-$(window).on('scroll', function(event) {
+// Debounce helper
+function debounce(func, wait) {
+    var timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Combined scroll handler - fixes header on scroll
+$(window).on('scroll', debounce(function(event) {
     var scrollValue = $(window).scrollTop();
+    
+    // Add fixed-top class when scrolled
     if (scrollValue > 70) {
-         $('.header_menu').addClass('fixed-top animated slideInDown');
-    } else{
-      $('.header_menu').removeClass('fixed-top animated slideInDown');
-    } 
-});
-
-
-  
+         $('.header_menu').addClass('fixed-top');
+    } else {
+      $('.header_menu').removeClass('fixed-top');
+    }
+    
+    // Sticky navbar effect
+    if (scrollValue > 10) {
+        $('.navbar').addClass('navbar-sticky-in');
+    } else {
+        $('.navbar').removeClass('navbar-sticky-in');
+    }
+}, 50));
+    
 "use strict";
 
-
-/*======== Doucument Ready Function =========*/
+/*======== Consolidated Document Ready Function =========*/
 jQuery(document).ready(function () {
 
     /* SlickNav disabled: slide-in mobile nav (mobile-nav.js + mobile-nav.css) */
 
     /**
-     * Sticky Header
-     */
-        
-    $(window).scroll(function(){
-
-      if( $(window).scrollTop() > 10 ){
-
-        $('.navbar').addClass('navbar-sticky-in')
-
-      } else {
-        $('.navbar').removeClass('navbar-sticky-in')
-      }
-
-    })
-    
-    /**
      * Main Menu Slide Down Effect
      */
      
     var selected = $('#navbar li');
-    // Mouse-enter dropdown
+    // Mouse-enter dropdown - simplified for better performance
     selected.on("mouseenter", function() {
-        $(this).find('ul').first().stop(true, true).delay(350).slideDown(500, 'easeInOutQuad');
+        $(this).find('ul').first().stop(true, true).slideDown(300);
     });
 
     // Mouse-leave dropdown
     selected.on("mouseleave", function() {
-        $(this).find('ul').first().stop(true, true).delay(100).slideUp(150, 'easeInOutQuad');
+        $(this).find('ul').first().stop(true, true).slideUp(150);
     });
 
     /**
-     *  Arrow for Menu has sub-menu
+     *  Arrow for Menu has sub-menu (deferred to prevent layout thrashing)
      */
     if ($(window).width() > 992) {
-      $(".navbar-arrow ul ul > li").has("ul").children("a").append("<i class='arrow-indicator fa fa-angle-right'></i>");
+      setTimeout(function() {
+        $(".navbar-arrow ul ul > li").has("ul").children("a").append("<i class='arrow-indicator fa fa-angle-right'></i>");
+      }, 100);
     }
 
     /**
@@ -104,49 +110,33 @@ jQuery(document).ready(function () {
 
 });
 
-
- (function(){
-
+// Optimized header visibility toggle on scroll (consolidated and debounced)
+(function() {
+    "use strict";
+    
     var doc = document.documentElement;
-    var w   = window;
-
-    /*
-    define four variables: curScroll, prevScroll, curDirection, prevDirection
-    */
-
+    var w = window;
     var curScroll;
     var prevScroll = w.scrollY || doc.scrollTop;
     var curDirection = 0;
     var prevDirection = 0;
-
-    /*
-    how it works:
-    -------------
-    create a scroll event listener
-    create function to check scroll position on each scroll event,
-    compare curScroll and prevScroll values to find the scroll direction
-    scroll up - 1, scroll down - 2, initial - 0
-    then set the direction value to curDirection
-    compare curDirection and prevDirection
-    if it is different, call a function to show or hide the header
-    example:
-    step 1: user scrolls down: curDirection 2, prevDirection 0 > hide header
-    step 2: user scrolls down again: curDirection 2, prevDirection 2 > already hidden, do nothing
-    step 3: user scrolls up: curDirection 1, prevDirection 2 > show header
-    */
-
     var header = document.getElementById('header_menu');
     var toggled;
     var threshold = 200;
 
+    function debounce(func, wait) {
+        var timeout;
+        return function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(func, wait);
+        };
+    }
+
     var checkScroll = function() {
         curScroll = w.scrollY || doc.scrollTop;
         if(curScroll > prevScroll) {
-            // scrolled down
             curDirection = 2;
-        }
-        else {
-            //scrolled up
+        } else {
             curDirection = 1;
         }
 
@@ -163,11 +153,11 @@ jQuery(document).ready(function () {
     var toggleHeader = function() { 
         toggled = true;
         if(curDirection === 2 && curScroll > threshold) {
-            header.classList.add('hide');
+            if (header) header.classList.add('hide');
             jQuery('.sticky1').addClass('tab-sticky');
         }
         else if (curDirection === 1) {
-            header.classList.remove('hide');
+            if (header) header.classList.remove('hide');
             jQuery('.sticky1').removeClass('tab-sticky');
         }
         else {
@@ -176,7 +166,8 @@ jQuery(document).ready(function () {
         return toggled;
     };
 
-    window.addEventListener('scroll', checkScroll);
+    // Debounced scroll listener
+    window.addEventListener('scroll', debounce(checkScroll, 50), false);
 
 })();
 

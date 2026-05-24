@@ -9,13 +9,27 @@
  (function($) {
      "use strict";
 
+     // Debounce function for scroll events
+     function debounce(func, wait) {
+         var timeout;
+         return function executedFunction(...args) {
+             const later = () => {
+                 clearTimeout(timeout);
+                 func(...args);
+             };
+             clearTimeout(timeout);
+             timeout = setTimeout(later, wait);
+         };
+     }
 
-     /*======== Doucument Ready Function =========*/
+     /*======== Consolidated Document Ready Function =========*/
     jQuery(document).ready(function () {
+      // Preloader cleanup
       $("#status").fadeOut();
       $("#preloader").delay(200).fadeOut("slow");
       $("body").delay(200).css({ "overflow": "visible" });
 
+      // Set current date
       var dateElement = document.getElementById("current-date");
       if (dateElement) {
         var now = new Date();
@@ -23,21 +37,19 @@
         dateElement.textContent = now.toLocaleDateString("en-US", options);
       }
 
-      new WOW().init();
+      // Initialize animations (deferred for better performance)
+      setTimeout(function() {
+        new WOW().init();
+      }, 500);
 
       // Set min date for date inputs to today
       var today = new Date().toISOString().split('T')[0];
       $('input[type="date"]').attr('min', today);
 
-    });
-
-
-
-    jQuery(document).ready(() => {
-         jQuery('.js-video-button').modalVideo({
-             channel: 'vimeo'
-         });
-     });
+      // Initialize video modal
+      jQuery('.js-video-button').modalVideo({
+          channel: 'vimeo'
+      });
 
      // Range sliders activation
      $(".range-slider-ui").each(function() {
@@ -63,35 +75,44 @@
          });
      });
 
+     /* Back to Top - Optimized */
+     var backToTopBtn = $('#back-to-top, .back-to-top');
+     var scrollThreshold = 500;
+     var isScrolling = false;
 
-     /* ------------------------------------------------------------------------ */
-     /* BACK TO TOP
-    /* ------------------------------------------------------------------------ */
-     $(document).on('click', '#back-to-top, .back-to-top', () => {
-         $('html, body').animate({
+     $(document).on('click', '#back-to-top, .back-to-top', function(e) {
+         e.preventDefault();
+         $('html, body').stop().animate({
              scrollTop: 0
-         }, '500');
+         }, 800);
          return false;
      });
-     $(window).on('scroll', () => {
-         if ($(window).scrollTop() > 500) {
-             $('#back-to-top').fadeIn(200);
-         } else {
-             $('#back-to-top').fadeOut(200);
-         }
-     });
 
-     // Slick SLider
-     $('.slider-store').slick({
-         slidesToShow: 1,
-         slidesToScroll: 1,
-         direction: 'vertical',
-         arrows: false,
-         dots: false,
-         fade: true,
-         autoplay: true,
-         asNavFor: '.slider-thumbs'
-     });
+     // Optimized scroll listener with debounce
+     $(window).on('scroll', debounce(function() {
+         if ($(window).scrollTop() > scrollThreshold) {
+             backToTopBtn.fadeIn(200);
+         } else {
+             backToTopBtn.fadeOut(200);
+         }
+     }, 50));
+
+     // Slick Slider - Optimized configurations
+     var sliderConfig = {
+         store: {
+             slidesToShow: 1,
+             slidesToScroll: 1,
+             direction: 'vertical',
+             arrows: false,
+             dots: false,
+             fade: true,
+             autoplay: true,
+             autoplaySpeed: 4000,
+             asNavFor: '.slider-thumbs'
+         }
+     };
+
+     $('.slider-store').slick(sliderConfig.store);
     
 
      $('.slider-thumbs').slick({
@@ -101,6 +122,7 @@
          dots: false,
          arrows: false,
          autoplay: true,
+         autoplaySpeed: 4000,
          direction: 'vertical',
          centerMode: true,
          focusOnSelect: true,
@@ -122,7 +144,8 @@
          dots: false,
          rows:0,
          autoplay: true,
-         speed: 2000,
+         autoplaySpeed: 5000,
+         speed: 800,
          loop:true,
          responsive: [{
              breakpoint: 991,
@@ -141,7 +164,8 @@
          dots: false,
          rows:0,
          autoplay: true,
-         speed: 5000,
+         autoplaySpeed: 6000,
+         speed: 800,
          loop:true,
          responsive: [{
              breakpoint: 1100,
@@ -159,7 +183,8 @@
          dots: false,
          autoplay: true,
          rows:0,
-         speed: 4000,
+         autoplaySpeed: 5000,
+         speed: 800,
          loop:true,
          responsive: [{
              breakpoint: 700,
@@ -177,7 +202,8 @@
          rows:0,
          dots: false,
          autoplay: true,
-         speed: 4000,
+         autoplaySpeed: 5000,
+         speed: 800,
          loop:true,
           responsive: [{
              breakpoint: 1000,
@@ -205,7 +231,8 @@
          slidesToScroll: 1,
          arrows: false,
          dots: false,
-         speed: 2000,
+         autoplaySpeed: 4000,
+         speed: 800,
          rows:0,
          autoplay: true,
          draggable:false,
@@ -237,7 +264,8 @@
          arrows: false,
          dots: true,
          autoplay: true,
-         speed: 1000,
+         autoplaySpeed: 4000,
+         speed: 800,
          rows:0,
          loop:true,
          responsive: [{
@@ -260,7 +288,8 @@
          arrows: true,
          dots: false,
          autoplay: true,
-         speed: 2000,
+         autoplaySpeed: 4000,
+         speed: 800,
          rows:0,
          loop:true,
          responsive: [{
@@ -285,7 +314,8 @@
          arrows: false,
          dots: false,
          autoplay: true,
-         speed: 2000,
+         autoplaySpeed: 4000,
+         speed: 800,
          rows:0,
          loop:true,
          responsive: [{
@@ -907,6 +937,8 @@
          
          return false;
      });
+
+ }); // end jQuery(document).ready
 
  })(jQuery);
 

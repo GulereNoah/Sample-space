@@ -1,17 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap");
 /*------------------------------------------------------------------
-* Project:        Travelin - Travel Tour Booking HTML Templates
-* Author:         bizberg_themes
-* URL:            https://themeforest.net/user/bizberg_themes
-* Created:        06/27/2022
--------------------------------------------------------------------
 */
 /* ========================================= */
 /*          Default CSS                      */
 /* ========================================= */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap");
 header,
 nav,
 section,
@@ -1928,13 +1921,12 @@ header #navbar {
   font-size: 14px;
 }
 .main_header_area .header_menu {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+  position: relative;
   left: 0;
   width: 100%;
   z-index: 9999;
-  transition: top 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  transition: position 0.3s ease, box-shadow 0.3s ease;
 }
 .main_header_area .header_menu.fixed-top {
   position: fixed;
@@ -1942,7 +1934,7 @@ header #navbar {
   left: 0;
   width: 100%;
   z-index: 9999;
-  box-shadow: 0 0 15px rgba(204, 204, 204, 0.2156862745);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   background: #fff;
 }
 .main_header_area .header_menu.fixed-top .nav.navbar-nav {
@@ -8155,4 +8147,30 @@ ul.sidebar-tags li a:hover {
 
 .partner-item:hover img {
     filter: grayscale(0%);
+}
+
+
+/* Custom styles for counter section on mobile */
+@media (max-width: 991.98px) {
+  .counter-main {
+    float: none !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  .counter-main .counter {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .counter-main .row {
+    justify-content: center !important;
+  }
+  
+  .counter-main .counter-item {
+    text-align: center !important;
+  }
 }
