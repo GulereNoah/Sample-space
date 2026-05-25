@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Performance: DNS Prefetch and Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <title>Simbiya- Safaris & Tours</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
     <!--Custom CSS-->
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -2169,18 +2176,24 @@
 
     <!-- *Scripts* -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <!-- Critical scripts - load first -->
     <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/fontawesome.min.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/particlerun.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/custom-swiper.js"></script>
-    <script src="js/custom-nav.js"></script>
-    <script src="js/mobile-nav.js"></script>
-    <script src="js/simbiya-banner.js"></script>
+    
+    <!-- Performance optimization script - must load early -->
+    <script src="js/performance-enhanced.js"></script>
+    
+    <!-- Deferred scripts for better performance -->
+    <script defer src="js/bootstrap.min.js"></script>
+    <script defer src="js/fontawesome.min.js"></script>
+    <script defer src="js/particles.js"></script>
+    <script defer src="js/particlerun.js"></script>
+    <script defer src="js/plugin.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/custom-swiper.js"></script>
+    <script defer src="js/custom-nav.js"></script>
+    <script defer src="js/mobile-nav.js"></script>
+    <script defer src="js/simbiya-banner.js"></script>
     <!-- Failsafe preloader dismissal: clears preloader on load or after 4s max -->
     <script>
       (function() {
