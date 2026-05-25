@@ -37,6 +37,38 @@
         dateElement.textContent = now.toLocaleDateString("en-US", options);
       }
 
+      // Responsive Hero Video Switching (Desktop vs Mobile)
+      function setHeroVideos() {
+        var isMobile = window.innerWidth < 768;
+        var videos = document.querySelectorAll('.banner-video');
+        
+        videos.forEach(function(video) {
+          var sources = video.querySelectorAll('source');
+          if (isMobile) {
+            // Mobile video
+            sources[0].src = 'images/bg/herovidm.mp4';
+            sources[0].type = 'video/mp4';
+            sources[1].src = 'images/bg/herovidm.webm';
+            sources[1].type = 'video/webm';
+          } else {
+            // Desktop video
+            sources[0].src = 'images/bg/herovid.mp4';
+            sources[0].type = 'video/mp4';
+            sources[1].src = 'images/bg/herovid.webm';
+            sources[1].type = 'video/webm';
+          }
+          video.load(); // Reload video with new sources
+        });
+      }
+      
+      // Initialize hero videos on page load
+      setHeroVideos();
+      
+      // Handle window resize
+      $(window).on('resize', debounce(function() {
+        setHeroVideos();
+      }, 250));
+
       // Initialize animations (deferred for better performance)
       setTimeout(function() {
         new WOW().init();
