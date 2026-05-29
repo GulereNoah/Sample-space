@@ -1,35 +1,62 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+﻿
+#section-1 {
+  position: relative;
+  height: 100dvh;
+  min-height: 700px;
 
-section#section-1 {
   margin-top: 0;
   padding: 0;
-  min-height: 700px;
+
+  overflow: hidden;
+
   color: #FEFFFF;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  font-family: "Poppins", sans-serif;
 }
 
 @media (max-width: 991px) {
-  section#section-1 {
-    min-height: 500px;
+  #section-1 {
+    height: 100dvh;
+    min-height: 600px;
   }
 }
 
-@media (max-width: 575.98px) {
-  section#section-1 {
-    min-height: 400px;
-  }
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
 }
 
-#section-1 {
-  font-family: "Poppins", sans-serif;
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 1;
 }
 
 #section-1 .content-slider {
   position: relative;
+  z-index: 3;
+
   width: 100%;
-  flex: 1;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
 }
@@ -41,57 +68,28 @@ section#section-1 {
 #section-1 .content-slider .slider {
   position: relative;
   width: 100%;
+  height: 100%;
   flex: 1;
   overflow: hidden;
 }
 
 #section-1 .content-slider .slider .banner {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
   opacity: 0;
   z-index: 0;
-  width: inherit;
-  height: inherit;
-  text-align: center;
-  transition: all 0.5s ease;
+
   overflow: hidden;
-}
 
-/* Hero Video Styling - Responsive & Mobile Friendly */
-#section-1 .content-slider .slider .banner .banner-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
+  transition: opacity .8s ease;
 
-/* Optional: Dark overlay for better text readability over video */
-#section-1 .content-slider .slider .banner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-/* Mobile: Disable video on very small screens for performance */
-@media (max-width: 768px) {
-  #section-1 .content-slider .slider .banner .banner-video {
-    object-position: center 30%;
-  }
-}
-
-@media (max-width: 575.98px) {
-  #section-1 .content-slider .slider .banner .banner-video {
-    object-position: center 40%;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #section-1 .more-info {
@@ -156,14 +154,45 @@ section#section-1 {
   align-items: center;
   justify-content: flex-end;
 }
-
 #section-1 .content-slider .slider .banner .banner-inner-wrapper {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 80px 15px 80px;
   position: relative;
   z-index: 2;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 40px 20px 120px;;
 }
+
+#section-1 .main-caption {
+  text-align: center;
+}
+#section-1 .row {
+  justify-content: center;
+}
+#section-1 .buttons,
+#section-1 .button-group,
+#section-1 .learn-more-button {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+#section-1 .content-slider .slider .banner .banner-inner-wrapper h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1;
+}
+
+
 
 #section-1 .content-slider .slider .banner .banner-inner-wrapper .main-caption {
   position: relative;
@@ -247,39 +276,15 @@ section#section-1 {
   opacity: 0.8;
 }
 
-#section-1 .content-slider .slider #top-banner-1 {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination1.webp') center center no-repeat;
-  background-size: cover;
-}
-
-#section-1 .content-slider .slider #top-banner-2 {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination10.webp') center center no-repeat;
-  background-size: cover;
-}
-
-#section-1 .content-slider .slider #top-banner-3 {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination16.webp') center center no-repeat;
-  background-size: cover;
-}
-
-#section-1 .content-slider .slider #top-banner-4 {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('../images/destination/destination11.webp') center center no-repeat;
-  background-size: cover;
-}
 
 #section-1 .content-slider nav {
   position: absolute;
-  bottom: 60px;
+  bottom: clamp(20px, 4vw, 60px);
+
   width: 100%;
-  z-index: 10;
+
+  z-index: 20;
+
   text-align: center;
 }
 
@@ -338,59 +343,12 @@ section#section-1 {
 #section-1 .content-slider nav .controls label:hover {
   color: #E0973D;
 }
-
 #section-1 .content-slider #banner1:checked~.slider #top-banner-1,
 #section-1 .content-slider #banner2:checked~.slider #top-banner-2,
 #section-1 .content-slider #banner3:checked~.slider #top-banner-3,
 #section-1 .content-slider #banner4:checked~.slider #top-banner-4 {
   opacity: 1;
-  z-index: 1;
-  position: relative;
-  height: auto;
-  min-height: 100%;
-}
-
-#section-1 .content-slider #banner1:checked~nav label:nth-of-type(1),
-#section-1 .content-slider #banner2:checked~nav label:nth-of-type(2),
-#section-1 .content-slider #banner3:checked~nav label:nth-of-type(3),
-#section-1 .content-slider #banner4:checked~nav label:nth-of-type(4) {
-  cursor: default;
-  color: #FEFFFF;
-  transition: all 0.5s;
-}
-
-#section-1 .content-slider #banner1:checked~nav label:nth-of-type(1) .progressbar,
-#section-1 .content-slider #banner2:checked~nav label:nth-of-type(2) .progressbar,
-#section-1 .content-slider #banner3:checked~nav label:nth-of-type(3) .progressbar,
-#section-1 .content-slider #banner4:checked~nav label:nth-of-type(4) .progressbar {
-  background: #FCFCF8;
-}
-
-#section-1 .content-slider #banner1:checked~nav label:nth-of-type(1) .progressbar-fill,
-#section-1 .content-slider #banner2:checked~nav label:nth-of-type(2) .progressbar-fill,
-#section-1 .content-slider #banner3:checked~nav label:nth-of-type(3) .progressbar-fill,
-#section-1 .content-slider #banner4:checked~nav label:nth-of-type(4) .progressbar-fill {
-  animation: progressBarFill 5s linear;
-}
-
-@keyframes progressBarFill {
-  from {
-    margin-left: -100%;
-  }
-
-  to {
-    margin-left: 0;
-  }
-}
-
-html,
-body {
-  overflow-x: hidden;
-}
-
-html,
-body {
-  overflow-x: hidden;
+  z-index: 2;
 }
 
 
